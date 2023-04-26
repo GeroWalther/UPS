@@ -2,11 +2,13 @@ import { gql } from "@apollo/client";
 
 export const GET_CUSTOMERS = gql`
   query GetCustomers {
-    value {
-      email
+    getCustomers {
+      value {
+        email
+        name
+      }
       name
     }
-    name
   }
 `;
 

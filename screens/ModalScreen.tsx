@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import React from "react";
 import { Icon } from "@rneui/themed";
 import { useTailwind } from "tailwind-rn/dist";
@@ -13,6 +13,7 @@ import { RootStackParamList } from "../navigator/RootNav";
 import { TabStackParamList } from "../navigator/TabNav";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import useCustomerOrders from "../hooks/useCustomerOrders";
+import DeliveryCard from "../components/DeliveryCard";
 
 type ModalScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamList>,
@@ -38,12 +39,24 @@ const ModalScreen = () => {
       >
         <Icon name="closecircle" type="antdesign" />
       </TouchableOpacity>
-      <View>
-        <View>
-          <Text>{name}</Text>
-          <Text>deliveries</Text>
+
+      <View style={{ marginTop: 10 }}>
+        <View style={[tw("py-5 border-b"), { borderColor: "#59C1CC" }]}>
+          <Text
+            style={[tw("text-center text-xl font-bold"), { color: "#59C1CC" }]}
+          >
+            {name}
+          </Text>
+          <Text style={[tw("text-center italic text-sm")]}>deliveries</Text>
         </View>
       </View>
+
+      <FlatList
+        contentContainerStyle={{ paddingBottom: 200 }}
+        data={orders}
+        keyExtractor={(order) => order.trackingId}
+        renderItem={({ item: order }) => <DeliveryCard order={order} />}
+      />
     </View>
   );
 };

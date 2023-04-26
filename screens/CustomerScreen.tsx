@@ -44,7 +44,6 @@ const CustomerScreen = () => {
         onChangeText={setInput}
         style={tw("bg-white py-5 px-10 ")}
       />
-
       {data?.getCustomers
         ?.filter((customer: CustomerList) =>
           customer.value.name.includes(Input)
