@@ -55,7 +55,9 @@ const ModalScreen = () => {
         contentContainerStyle={{ paddingBottom: 200 }}
         data={orders}
         keyExtractor={(order) => order.trackingId}
-        renderItem={({ item: order }) => <DeliveryCard order={order} />}
+        renderItem={({ item: order }) => (
+          <DeliveryCard fullWidth={false} order={order} />
+        )}
       />
     </View>
   );
